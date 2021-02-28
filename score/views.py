@@ -20,15 +20,27 @@ class MyCreateView(CreateView):
     template_name = "create.html"
     success_url = reverse_lazy("login")
 
+# ans = None
+
 class IndexView(FormView):
     form_class = forms.RhymeText
     template_name = "index.html"
-    success_url = reverse_lazy("index")
-
+    # success_url = reverse_lazy("index")
     def form_valid(self, form):
         form.instance.user =  self.request.user
-        RS = RhymeSearch()
-        ori, ans = RS.main(form.instance.text)
-        print(ans)
         form.save()  # 保存処理など
-        return super().form_valid(form)
+        # return super().form_valid(form)
+        return render(self.request, 'index.html', form)
+
+class ResultView(FormView):
+    form_class = forms.RhymeText
+
+    def form_valid(self, form):
+        RS = RhymeSearch()
+        ans = form.instance.text
+        context = RS.main(ans)
+        # print(context)
+        return render(self.request, 'result.html',  {'form': context, 'text': form})
+
+    def form_invalid(self, form):
+        return render(self.request, 'index.html', {'form': form})

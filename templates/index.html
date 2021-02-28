@@ -3,7 +3,7 @@
 {% block content %}
 <main role="main">
     <div class="inline-contents justify-content-center space2">
-        <form method="POST" action="">
+        <form method="POST" action="{% url 'score:result' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" class='btn-primary'>判定</button>

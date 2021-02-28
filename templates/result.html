@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <main role="main">
+    {% for txt in text %}
+        <div class="center space-text">
+            <label for="story">original:</label>
+            <textarea id="story" rows="15" cols="8" class="form-control textarea-primary" readonly>{{txt.value}}</textarea>
+        </div>
+    {% endfor %}
+    {% for key, value in form.items %}
+        <div class="container inline-content justify-content-center space-center">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-primary">{{key}}</li>
+        {% for item in value %}
+                <li class="list-group-item">{{item}}</li>
+        {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+    </main>
+{% endblock content %}

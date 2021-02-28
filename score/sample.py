@@ -51,11 +51,11 @@ class RhymeSearch():
 
     def main(self, txt):
         from pykakasi import kakasi
-        ori = txt
         txt = unicodedata.normalize("NFKC", txt)
         table = str.maketrans("", "", string.punctuation  + "「」、。・")
         txt = txt.translate(table)
         txt = txt.replace('\ufeff', '')
+        ori = txt
         # txt = txt.translate(str.maketrans( '', '',string.punctuation))
         kakasi = kakasi()
         kakasi.setMode('J', 'H')
@@ -70,7 +70,7 @@ class RhymeSearch():
         rhyme_dict = {}
 
         for i in range(3, 6+1):
-            all = itertools.product('aiueo', repeat=i)
+            all = itertools.product('aiueon', repeat=i)
             for x in all:
                 strig = ''.join(x)
                 ans = [item.span() for item in re.finditer(strig, boin)]
@@ -79,8 +79,4 @@ class RhymeSearch():
         
         rhyme_ans = self.rhyme_to_ans(rhyme_dict, hira_list)
 
-        return ori, rhyme_ans
-
-RS = RhymeSearch()
-a, b = RS.main('ライム　タイム　タイプ　ワイプ')
-print(b)
+        return rhyme_ans

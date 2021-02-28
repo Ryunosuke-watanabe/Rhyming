@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, CreateView, FormView
 from . import forms
 from django.urls import reverse_lazy
+from .sample import RhymeSearch
 
 class MyLoginView(LoginView):
     form_class = forms.LoginForm
@@ -26,5 +27,8 @@ class IndexView(FormView):
 
     def form_valid(self, form):
         form.instance.user =  self.request.user
+        RS = RhymeSearch()
+        ori, ans = RS.main(form.instance.text)
+        print(ans)
         form.save()  # 保存処理など
         return super().form_valid(form)

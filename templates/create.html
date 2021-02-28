@@ -3,10 +3,10 @@
 {% block content %}
 <main role="main">
     <div class="inline-contents justify-content-center">
-        <form method="POST" action="">
+        <form action="" method="POST">
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class='btn-primary'>判定</button>
+            <button type="submit" class='btn-primary'>作成</button>
         </form>
     </div>
 </main>

@@ -1,0 +1,19 @@
+html {
+    width: 100%;
+    height: 100%;
+  }
+  
+body {
+    font-family: serif;
+    background-color: #e8ecef;
+    vertical-align: middle;
+    min-height: 100%;
+}
+
+.inline-contents {
+    display: flex;
+}
+
+footer{
+    background-color: white;
+}
